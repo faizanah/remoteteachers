@@ -1,0 +1,57 @@
+<% unless flash.empty? %>
+  <%= render "shared/error_banner" do %>
+    <% flash.each do |key, value| %>
+      <%= content_tag :div, value, class: "flash #{key} d-inline" %>
+    <% end %>
+  <% end %>
+<% end %>
+
+<div class="container">
+  <div class="row pt-7">
+    <div class="col col-4 offset-4">
+      <div class="card">
+        <div class="card-header background">
+          <h4 class="mt-2"><%= t("invitation.on_boarding") %></h4>
+        </div>
+        <div class="card-body background">
+          <%= form_for @user, url: accept_invitation_path(@user.invitation_token), method: :put do |f|  %>
+            <div class="form-group">
+              <%= f.label t("settings.account.fullname"), class: "form-label" %>
+              <%= f.text_field :name, class: "form-control #{form_is_invalid?(@user, :name)}", placeholder: t("settings.account.fullname") %>
+              <div class="invalid-feedback d-block"><%= @user.errors.full_messages_for(:name).first %></div>
+            </div>
+            <div class="form-group">
+              <%= f.label t("email"), class: "form-label" %>
+              <%= f.text_field :email, class: "form-control #{form_is_invalid?(@user, :email)}", placeholder: t("email"), required: true %>
+              <div class="invalid-feedback d-block"><%= @user.errors.full_messages_for(:email).first %></div>
+            </div>
+            <div class="form-group">
+              <%= f.label t("password"), class: "form-label" %>
+              <%= f.password_field :password, class: "form-control #{form_is_invalid?(@user, :password)}", placeholder: t("password"), required: true %>
+              <div class="invalid-feedback d-block"><%= @user.errors.full_messages_for(:password).first %></div>
+            </div>
+            <div class="form-group">
+              <%= f.label t("signup.password_confirm"), class: "form-label" %>
+              <%= f.password_field :password_confirmation, class: "form-control #{form_is_invalid?(@user, :password_confirmation)}", placeholder: t("signup.password_confirm"), required: true %>
+              <div class="invalid-feedback d-block"><%= @user.errors.full_messages_for(:password_confirmation).first %></div>
+            </div>
+            <% if Rails.configuration.terms %>
+              <div class="form-inline">
+                <label class="custom-switch">
+                  <%= f.check_box :accepted_terms, class: "custom-switch-input form-control #{form_is_invalid?(@user, :accepted_terms)}", placeholder: t("signup.password_confirm") %>
+                  <span class="custom-switch-indicator"></span>
+                </label>
+                <%= f.label :accepted_terms, t("terms.accept", href: link_to(t("terms.title"), terms_path, target: "_blank", class: "ml-1 text-blue")).html_safe, class: "ml-1" %>
+                <div class="invalid-feedback d-block"><%= @user.errors.full_messages_for(:accepted_terms).first %></div>
+              </div>
+            <% end %>
+            <div class="card-footer">
+              <%= f.submit t("invitation.submit"), class: "btn btn-primary float-right ml-2" %>
+              <%= link_to t("cancel"), root_path, class: "btn btn-secondary float-right ml-2" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

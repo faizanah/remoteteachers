@@ -1,0 +1,73 @@
+<%
+  # BigBlueButton open source conferencing system - http://www.bigbluebutton.org/.
+  # Copyright (c) 2018 BigBlueButton Inc. and by respective authors (see below).
+  # This program is free software; you can redistribute it and/or modify it under the
+  # terms of the GNU Lesser General Public License as published by the Free Software
+  # Foundation; either version 3.0 of the License, or (at your option) any later
+  # version.
+  #
+  # BigBlueButton is distributed in the hope that it will be useful, but WITHOUT ANY
+  # WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+  # PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
+  # You should have received a copy of the GNU Lesser General Public License along
+  # with BigBlueButton; if not, see <http://www.gnu.org/licenses/>.
+%>
+
+<div class="modal fade" id="<%= user.new_record? ? 'createUserModal' : 'user-' + user.uid %>" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content text-center">
+      <div class="modal-body">
+        <div class="card-body p-6">
+          <div class="card-title">
+            <h3><%= user.new_record? ? t("modal.create_user.title") : t("modal.edit_user.title") %></h3>
+          </div>
+
+          <%= form_for user , url: user.new_record? ? users_path : user_update_path(user), method: user.new_record? ? :post : :put do |f|  %>
+            <div class="input-icon">
+              <span class="input-icon-addon">
+                <i class="fa fa-chalkboard-teacher"></i>
+              </span>
+              <%= f.text_field :name, id: "user-name", class: "form-control", placeholder: t("modal.create_user.name_placeholder"), autocomplete: :off %>
+              <div class="invalid-feedback text-left"><%= t("modal.create_user.name_not_blank") %></div>
+            </div>
+            </br>
+            <div class="input-icon">
+              <span class="input-icon-addon">
+                <i class="fa fa-envelope"></i>
+              </span>
+              <%= f.text_field :email, id: "user-email", class: "form-control", placeholder: t("modal.create_user.email_placeholder"), autocomplete: :off, required: true %>
+              <div class="invalid-feedback text-left"><%= t("modal.create_user.email_not_blank") %></div>
+            </div>
+            </br>
+            <div class="input-icon">
+              <span class="input-icon-addon">
+                <i class="fab fa-font-awesome-flag"></i>
+              </span>
+              <%= f.number_field :number_of_rooms, value: f.object.new_record? ? '' : f.object.number_of_rooms, class: "form-control", required: true, placeholder: t("modal.create_user.max_rooms_placeholder"), autocomplete: :off %>
+              <div class="invalid-feedback text-left"><%= t("modal.create_user.max_rooms_not_blank") %></div>
+            </div>
+            </br>
+            <div class="input-icon">
+              <span class="input-icon-addon">
+                <i class="fas fa-video"></i>
+              </span>
+              <%= f.number_field :number_of_recordings, value: f.object.new_record? ? '' : f.object.number_of_recordings, class: "form-control", required: true, placeholder: t("modal.create_user.max_recordings_placeholder"), autocomplete: :off %>
+              <div class="invalid-feedback text-left"><%= t("modal.create_user.max_recordings_not_blank") %></div>
+            </div>
+            <% if current_user.admin? %>
+              </br>
+              <div class="input-icon">
+                <%= f.select :role, User.roles.keys.map {|role| [role.titleize,role]}, {prompt: t("modal.create_user.role_placeholder")}, class: 'form-control', required: true %>
+                <div class="invalid-feedback text-left"><%= t("modal.create_user.role_not_blank") %></div>
+              </div>
+              <% end %>
+            </hr>
+            <div class="form-footer">
+              <%= f.submit 'Submit', id: "create-user-submit", class: "btn btn-outline-primary btn-block btn-pill" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

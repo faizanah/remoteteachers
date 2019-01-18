@@ -1,0 +1,97 @@
+<% unless flash.empty? %>
+  <%= render "shared/error_banner" do %>
+    <% flash.each do |key, value| %>
+      <%= content_tag :div, value, class: "flash #{key} d-inline" %>
+    <% end %>
+  <% end %>
+<% end %>
+
+<div class="sessions pb-5">
+  <div class="container pt-6">
+
+
+    <div class="row mt-2">
+      <div class="col-9">
+        <p class="subtitle">List of Users</p>
+      </div>
+      <div id="search_bar" class="col-3">
+        <%= search_form_for @q do |f| %>
+          <div class="input-icon">
+            <%= f.search_field :search, value: @search, class: 'form-control btn-pill', placeholder: 'Search...' %>
+            <span class="input-icon-addon">
+              <i class="fas fa-search"></i>
+            </span>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <hr class="mt-0">
+
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="table-responsive">
+            <table class="table table-hover table-outline table-vcenter text-nowrap card-table">
+              <thead>
+              <tr>
+                <th data-header="Name" data-order="none">Pic</th>
+                <th class="text-left">Name</th>
+                <th class="text-left" data-header="Length" data-order="none">
+                  Email
+                </th>
+                <th class="text-left" data-header="Users" data-order="none">
+                  Role
+                </th>
+                <th class="text-left" data-header="Users" data-order="none">
+                  Max Rooms
+                </th>
+                <th class="text-left" data-header="Users" data-order="none">
+                  Available Rooms
+                </th>
+                <th class="text-left">Status</th>
+                <th class="text-center">Actions</th>
+              </tr>
+              </thead>
+              <tbody id="recording-table">
+                <tr id="no_recordings_found" style="display: none;">
+                  <td colspan="7" class="text-center h4 p-6 font-weight-normal">
+                    No  recordings match your search.
+                  </td>
+                </tr>
+                <% if @users.present? %>
+                  <% @users.each do |user| %>
+                  <%= render("users/partials/create_user_modal", user: user) %>
+                  <tr>
+                      <td>
+                        <% if user.image.blank? %>
+                          <span class="avatar"><%= user.name.first %></span>
+                        <% else %>
+                          <span class="avatar" style="background-image: url(<%= user.image %>)"></span>
+                        <% end %>
+                      </td>
+                      <td class="text-left"><%= user.name %></td>
+                      <td><%= user.email %></td>
+                      <td><%= user.role.titleize %></td>
+                      <td><%= user.number_of_rooms %></td>
+                      <td><%= user.available_rooms %></td>
+                      <td><%= user.status.titleize %></td>
+                      <td class="text-center">
+                        <%= link_to raw("<i class='fas fa-user-edit'></i>"), '#', class: 'btn btn-sm btn-success m-b-5', data: { "toggle": "modal", "target": "#user-" + user.uid} %>
+                        <%= link_to raw("<i class='fas fa-user-times'></i>"), user_path(user.uid), method: :delete, class: 'btn btn-sm btn-danger m-b-5' %>
+                      </td>
+                    </tr>
+                  <% end %>
+                <% else %>
+                  <td colspan="7" class="text-center h4 p-6 font-weight-normal">
+                    No user found
+                  </td>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <%= will_paginate @users %>
+      </div>
+    </div>
+  </div>
+</div>

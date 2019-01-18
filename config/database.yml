@@ -1,0 +1,16 @@
+default: &default
+  pool: 5
+  timeout: 5000
+
+development:
+  <<: *default
+  url: postgres://ixmdnwzfnlmpvz:7341a6f83eee45a9d1b6af3c3c8e5004bb51c855c1410d15e05694b943fbe39c@ec2-23-21-244-254.compute-1.amazonaws.com:5432/d804k0ac9p4qb6
+test:
+  <<: *default
+  adapter: sqlite3
+  database: db/development.sqlite3
+
+# Use sqlite in production by default. Greenlight supports 
+production:
+  <<: *default
+  url: postgres://ixmdnwzfnlmpvz:7341a6f83eee45a9d1b6af3c3c8e5004bb51c855c1410d15e05694b943fbe39c@ec2-23-21-244-254.compute-1.amazonaws.com:5432/d804k0ac9p4qb6
