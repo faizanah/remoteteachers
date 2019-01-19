@@ -21,7 +21,7 @@ en:
     attributes:
       user:
         accepted_terms: "Terms and Conditions"
-  bigbluebutton: BigBlueButton
+  bigbluebutton: Remote Teachers
   bigbluebutton_exception: Oops, there was an error when starting the meeting!
   cancel: Cancel
   copy: Copy
@@ -39,10 +39,10 @@ en:
       contact_admin: If you are not an administrator, please contact one.
       continue: I'd like to stay using 1.0.
       notice: >
-        Greenlight encountered a database migration error.<br>
-        This may be because you haven't updated to Greenlight 2.0.
+        Remote Teachers encountered a database migration error.<br>
+        This may be because you haven't updated to Remote Teachers 2.0.
       upgrade: Show me how to upgrade to 2.0!
-      version: We've released a new version of Greenlight, but your database isn't compatible.
+      version: We've released a new version of Remote Teachers, but your database isn't compatible.
     not_found:
       message: Whoops! Looks like we can't find that.
       help: Is it possible its been removed?
@@ -64,7 +64,7 @@ en:
     email: Email
     submit: Submit
   go_back: Go back
-  greenlight: Greenlight
+  greenlight: Remote Teachers
   header:
     create_room: Create Room
     invite_user: Invite User
@@ -83,9 +83,9 @@ en:
   landing:
     about: "%{href} is a simple front-end for your BigBlueButton open-source web conferencing server. You can create your own rooms to host sessions, or join others using a short and convenient link."
     welcome: RT Virtual Class Management
-    video: Watch our tutorial on using Greenlight
+    video: Watch our tutorial on using Remote Teachers
     upgrade: Show me how to upgrade to 2.0!
-    version: We've released a new version of Greenlight, but your database isn't compatible.
+    version: We've released a new version of Remote Teachers, but your database isn't compatible.
   language_options:
     default: Default (browser language)
     ar: Arabic
@@ -206,7 +206,7 @@ en:
       title: Delete Account
     design:
       not_supported: Customization not currently supported.
-      subtitle: Customize Greenlight
+      subtitle: Customize Remote Teachers
       title: Design
     password:
       confirmation: New Password Confirmation
