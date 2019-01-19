@@ -46,7 +46,7 @@ Rails.application.configure do
   #     enable_starttls_auto: ENV['SMTP_STARTTLS_AUTO'],
   # }
 
-  config.action_mailer.default_url_options = { host: 'https://bigbluebtn.herokuapp.com'}
+  config.action_mailer.default_url_options = { host: ENV['DOMAIN']}
   ActionMailer::Base.delivery_method = :smtp
 
   ActionMailer::Base.smtp_settings = {
