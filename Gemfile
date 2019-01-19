@@ -80,8 +80,8 @@ group :development, :test do
   gem 'byebug', platform: :mri
 
   # Environment configuration.
-  gem 'dotenv-rails'
 end
+gem 'dotenv-rails'
 
 group :test do
   # Include Rspec and other testing utilities.
@@ -113,4 +113,7 @@ gem 'will_paginate', '~> 3.1.0'
 gem 'coveralls', require: false
 gem 'ransack'
 gem 'sendgrid'
-
+gem 'capistrano', '~> 3.7', '>= 3.7.1'
+gem 'capistrano-rails', '~> 1.2'
+gem 'capistrano-passenger', '~> 0.2.0'
+gem 'capistrano-rbenv', '~> 2.1'
