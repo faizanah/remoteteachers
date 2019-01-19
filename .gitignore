@@ -39,3 +39,4 @@ env
 config/terms.md
 coverage*
 config/database.yml\nconfig/secrets.yml
+config/database.yml\nconfig/secrets.yml
