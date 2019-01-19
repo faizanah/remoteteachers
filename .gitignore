@@ -40,3 +40,6 @@ config/terms.md
 coverage*
 config/database.yml\nconfig/secrets.yml
 config/database.yml\nconfig/secrets.yml
+
+# Ignore application configuration
+/config/application.yml
