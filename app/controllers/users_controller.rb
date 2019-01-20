@@ -25,7 +25,28 @@ class UsersController < ApplicationController
     date.strftime("%B #{date.day.ordinalize}, %Y.")
   end
   helper_method :recording_date
+  # Helper for converting BigBlueButton dates into a nice length string.
+  def recording_length(playbacks)
+    # Stats format currently doesn't support length.
+    valid_playbacks = playbacks.reject { |p| p[:type] == "statistics" }
+    return "0 min" if valid_playbacks.empty?
 
+    len = valid_playbacks.first[:length]
+    if len > 60
+      "#{(len / 60).round} hrs"
+    elsif len == 0
+      "< 1 min"
+    else
+      "#{len} min"
+    end
+  end
+  helper_method :recording_length
+
+  # Prevents single images from erroring when not passed as an array.
+  def safe_recording_images(images)
+    Array.wrap(images)
+  end
+  helper_method :safe_recording_images
   def index
     @search = (params[:q] and params[:q][:search]) ? params[:q][:search] : nil
     @q = User.ransack(name_or_email_cont: @search)
