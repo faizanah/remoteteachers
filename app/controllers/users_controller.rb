@@ -191,7 +191,7 @@ class UsersController < ApplicationController
   end
 
   def user_rooms
-    redirect_to user_room_show_path(user_uid: current_user.uid, room_uid: current_user.main_room.uid)
+    redirect_to user_room_show_path(user_uid: @user.uid, room_uid: @user.main_room.uid)
   end
 
   def user_room_show
