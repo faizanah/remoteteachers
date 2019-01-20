@@ -17,9 +17,14 @@
 # with BigBlueButton; if not, see <http://www.gnu.org/licenses/>.
 
 class UsersController < ApplicationController
-  before_action :find_user, only: [:edit, :update, :destroy, :user_update, :user_rooms, :user_room_delete]
+  before_action :find_user, only: [:edit, :update, :destroy, :user_update, :user_rooms, :user_room_delete, :user_room_show]
   before_action :find_room, only: [:user_room_delete, :user_room_show]
-  before_action :ensure_admin, except: [:destroy, :edit, :update, :user_rooms, :user_room_delete]
+  before_action :ensure_admin, except: [:destroy, :edit, :update]
+
+  def recording_date(date)
+    date.strftime("%B #{date.day.ordinalize}, %Y.")
+  end
+  helper_method :recording_date
 
   def index
     @search = (params[:q] and params[:q][:search]) ? params[:q][:search] : nil

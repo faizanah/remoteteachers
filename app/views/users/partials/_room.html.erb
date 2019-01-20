@@ -26,7 +26,7 @@
     <div class="row pt-9">
       <div class="col-lg-9 col-sm-12">
         <div id="room-title" class="display-3 form-inline <%= 'edit_hover_class' if user.main_room != user_room %>">
-          <h1 contenteditable=false id="user-text" class="display-3 text-left mb-3 font-weight-400"><%= user_room.name %></h1>
+          <h1 contenteditable=false id="user-text" class="display-3 text-left mb-3 font-weight-400"><%= user.name + " | " + user_room.name %></h1>
           <% if user.main_room == user_room %>
             <a class="disable-click"><i class="fas fa-home align-top home-indicator ml-2"></i></a>
           <% else %>
@@ -40,13 +40,13 @@
     <div id="room_block_container" class="row pt-7 pb-2">
       <% if user.rooms.length > 1 %>
         <div class="col-lg-4 col-md-6 col-sm-12">
-          <%= link_to user.main_room do %>
+          <%= link_to user_room_show_path(user_uid: user.uid, room_uid: user.main_room.uid) do %>
             <%= render "shared/components/room_block", room: user.main_room %>
           <% end %>
         </div>
         <% user.secondary_rooms.each do |r| %>
           <div class="col-lg-4 col-md-6 col-sm-12">
-            <%= link_to r do %>
+            <%= link_to user_room_show_path(user_uid: user.uid, room_uid: r.uid) do %>
               <%= render "shared/components/room_block", room: r %>
             <% end %>
           </div>
