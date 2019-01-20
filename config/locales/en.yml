@@ -82,7 +82,7 @@ en:
   invite_message: "To invite someone to the meeting, send them this link:"
   landing:
     about: "You can create your own rooms to host sessions. Each room has a convenient invitation link for participants to joint the session."
-    welcome: Virtual Class Management
+    welcome: Virtual Classrooms Management
     video: Watch our tutorial on using Remote Teachers
     upgrade: Show me how to upgrade to 2.0!
     version: We've released a new version of Remote Teachers, but your database isn't compatible.
