@@ -18,7 +18,7 @@ class InvitationController < ApplicationController
     end
 
     if errors.empty?  and @user.update!(user_params.merge!({invitation_token: nil, email_verified: true, status: 'accepted'}))
-      flash[:success] = 'Successfuly On-board. Welcome To Greenlight.'
+      flash[:success] = 'Successfuly On-board. Welcome To Virtual Classrooms Management.'
       login(@user)
     else
       flash[:errors] = @user.errors.full_messages.join(',')
