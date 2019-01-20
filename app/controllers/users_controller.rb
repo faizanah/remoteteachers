@@ -17,8 +17,9 @@
 # with BigBlueButton; if not, see <http://www.gnu.org/licenses/>.
 
 class UsersController < ApplicationController
-  before_action :find_user, only: [:edit, :update, :destroy, :user_update]
-  before_action :ensure_admin, except: [:destroy, :edit, :update]
+  before_action :find_user, only: [:edit, :update, :destroy, :user_update, :user_rooms, :user_room_delete]
+  before_action :find_room, only: [:user_room_delete, :user_room_show]
+  before_action :ensure_admin, except: [:destroy, :edit, :update, :user_rooms, :user_room_delete]
 
   def index
     @search = (params[:q] and params[:q][:search]) ? params[:q][:search] : nil
@@ -163,6 +164,18 @@ class UsersController < ApplicationController
     end
   end
 
+  def user_rooms
+
+  end
+
+  def user_room_show
+
+  end
+
+  def user_room_delete
+    @room.destroy
+    redirect_to user_rooms_path(@user.uid)
+  end
 
 
   private
@@ -183,6 +196,9 @@ class UsersController < ApplicationController
     @user = User.find_by!(uid: params[:user_uid] || params[:id])
   end
 
+  def find_room
+    @room = Room.find_by!(uid: params[:room_uid])
+  end
   def ensure_unauthenticated
     redirect_to current_user.main_room if current_user
   end

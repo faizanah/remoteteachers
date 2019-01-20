@@ -31,6 +31,9 @@ Rails.application.routes.draw do
   put '/invitations/:token', to: 'invitation#update', as: :accept_invitation
   put '/users_update/:id', to: 'users#user_update', as: :user_update
   match '/terms', to: 'users#terms', via: [:get, :post]
+  get '/users/:user_uid/rooms', to: 'users#user_rooms', as: :user_rooms
+  get '/users/:user_uid/rooms/:room_uid', to: 'users#user_room_show', as: :user_room_show
+  delete '/users/:user_uid/rooms/:room_uid', to: 'users#user_room_delete', as: :user_room_delete
 
   # Password reset resources.
   resources :password_resets, only: [:new, :create, :edit, :update]
@@ -76,6 +79,17 @@ Rails.application.routes.draw do
       delete '/', to: 'rooms#delete_recording', as: :delete_recording
     end
   end
+  # Extended user room routes.
+  # scope 'users/:user_id/:room_uid' do
+  #   patch '/', to: 'rooms#update', as: :user_update_room
+  #   post '/start', to: 'rooms#start', as: :user_start_room
+  #
+  #   # Manage recordings
+  #   scope '/:record_id' do
+  #     post '/', to: 'rooms#update_recording', as: :user_update_recording
+  #     delete '/', to: 'rooms#delete_recording', as: :user_delete_recording
+  #   end
+  # end
 
   root to: 'main#index'
 end

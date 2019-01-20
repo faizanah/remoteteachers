@@ -78,6 +78,7 @@
                       <td class="text-center">
                         <%= link_to raw("<i class='fas fa-user-edit'></i>"), '#', class: 'btn btn-sm btn-success m-b-5', data: { "toggle": "modal", "target": "#user-" + user.uid} %>
                         <%= link_to raw("<i class='fas fa-user-times'></i>"), user_path(user.uid), method: :delete, class: 'btn btn-sm btn-danger m-b-5' %>
+                        <%= link_to raw("<i class='fas fa-video'></i>"), user_rooms_path(user.uid), class: 'btn btn-sm btn-info m-b-5' %>
                       </td>
                     </tr>
                   <% end %>
