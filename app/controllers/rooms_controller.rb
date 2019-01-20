@@ -105,7 +105,7 @@ class RoomsController < ApplicationController
 
   # POST /:room_uid/start
   def start
-    if current_user.admin? or current_user.number_of_recordings > @room.recordings.count
+    if current_user.number_of_recordings > @room.recordings.count
       opts = default_meeting_options
       opts[:user_is_moderator] = true
 
