@@ -153,7 +153,7 @@ class RoomsController < ApplicationController
   def recording_date(date)
     date.strftime("%B #{date.day.ordinalize}, %Y.")
   end
-  helper_method :recordin  # Helper for converting BigBlueButton dates into a nice length string.
+  helper_method :recording_date  # Helper for converting BigBlueButton dates into a nice length string.
   def recording_length(playbacks)
     # Stats format currently doesn't support length.
     valid_playbacks = playbacks.reject { |p| p[:type] == "statistics" }
