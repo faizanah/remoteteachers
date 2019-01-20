@@ -105,7 +105,7 @@ class RoomsController < ApplicationController
 
   # POST /:room_uid/start
   def start
-    if current_user.number_of_recordings > @room.recordings.count
+    # if current_user.number_of_recordings > @room.recordings.count
       opts = default_meeting_options
       opts[:user_is_moderator] = true
       opts[:allowStartStopRecording] = !(current_user.number_of_recordings >= @room.recordings.count)
@@ -119,10 +119,10 @@ class RoomsController < ApplicationController
       # Notify users that the room has started.
       # Delay 5 seconds to allow for server start, although the request will retry until it succeeds.
       NotifyUserWaitingJob.set(wait: 5.seconds).perform_later(@room)
-    else
-      flash[:error] = "You have reached you recording limit. Delete any recording of this room to start new session."
-      request.referer
-    end
+    # else
+    #   flash[:error] = "You have reached you recording limit. Delete any recording of this room to start new session."
+    #   request.referer
+    # end
   end
 
   # GET /:room_uid/logout
