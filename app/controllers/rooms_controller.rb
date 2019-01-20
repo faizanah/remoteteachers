@@ -20,7 +20,7 @@ class RoomsController < ApplicationController
   before_action :validate_accepted_terms, unless: -> { !Rails.configuration.terms }
   before_action :validate_verified_email, unless: -> { !Rails.configuration.enable_email_verification }
   before_action :find_room, except: :create
-  before_action :verify_room_ownership, except: [:create, :show, :join, :logout, :destroy]
+  before_action :verify_room_ownership, except: [:create, :show, :join, :logout, :destroy, :update_recording, :delete_recording]
 
   META_LISTED = "gl-listed"
 
@@ -139,42 +139,41 @@ class RoomsController < ApplicationController
     }
 
     res = @room.update_recording(params[:record_id], meta)
-    redirect_to @room if res[:updated]
+    redirect_to request.referer if res[:updated]
   end
 
   # DELETE /:room_uid/:record_id
   def delete_recording
     @room.delete_recording(params[:record_id])
-
-    redirect_to current_user.main_room
+    redirect_to request.referer
   end
 
   # Helper for converting BigBlueButton dates into the desired format.
-  def recording_date(date)
-    date.strftime("%B #{date.day.ordinalize}, %Y.")
-  end
-  helper_method :recording_date  # Helper for converting BigBlueButton dates into a nice length string.
-  def recording_length(playbacks)
-    # Stats format currently doesn't support length.
-    valid_playbacks = playbacks.reject { |p| p[:type] == "statistics" }
-    return "0 min" if valid_playbacks.empty?
-
-    len = valid_playbacks.first[:length]
-    if len > 60
-      "#{(len / 60).round} hrs"
-    elsif len == 0
-      "< 1 min"
-    else
-      "#{len} min"
-    end
-  end
-  helper_method :recording_length
-
-  # Prevents single images from erroring when not passed as an array.
-  def safe_recording_images(images)
-    Array.wrap(images)
-  end
-  helper_method :safe_recording_imagesg_date
+  # def recording_date(date)
+  #   date.strftime("%B #{date.day.ordinalize}, %Y.")
+  # end
+  # helper_method :recording_date  # Helper for converting BigBlueButton dates into a nice length string.
+  # def recording_length(playbacks)
+  #   # Stats format currently doesn't support length.
+  #   valid_playbacks = playbacks.reject { |p| p[:type] == "statistics" }
+  #   return "0 min" if valid_playbacks.empty?
+  #
+  #   len = valid_playbacks.first[:length]
+  #   if len > 60
+  #     "#{(len / 60).round} hrs"
+  #   elsif len == 0
+  #     "< 1 min"
+  #   else
+  #     "#{len} min"
+  #   end
+  # end
+  # helper_method :recording_length
+  #
+  # # Prevents single images from erroring when not passed as an array.
+  # def safe_recording_images(images)
+  #   Array.wrap(images)
+  # end
+  # helper_method :safe_recording_imagesg_date
 
 
 
