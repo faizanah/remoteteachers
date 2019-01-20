@@ -14,7 +14,8 @@
 %>
 
 <footer class="footer pt-3">
-  <p class="text-center mb-1"><%= t("footer.powered_by", href: link_to( 'remoteteachers.com', "https://remoteteachers.com", target: "_blank")).html_safe %> v <%= Greenlight::Application::VERSION %>
+  <p class="text-center mb-1"><%= t("footer.powered_by", href: link_to( 'remoteteachers.com', "https://remoteteachers.com", target: "_blank")).html_safe %> |
+    <%= link_to 'Terms', 'https://remoteteachers.com/terms' %> | <%= link_to 'Privacy', 'https://remoteteachers.com/privacy' %>
 
   </p>
 </footer>
