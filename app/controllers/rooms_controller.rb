@@ -82,7 +82,11 @@ class RoomsController < ApplicationController
     if @room.running?
       # Determine if the user needs to join as a moderator.
       opts[:user_is_moderator] = @room.owned_by?(current_user)
-      opts[:allowStartStopRecording] = ((current_user.number_of_recordings > @room.recordings.count) || false) if @room.owned_by?(current_user)
+      if current_user.admin?
+        opts[:allowStartStopRecording] = true
+      else
+        opts[:allowStartStopRecording] = ((current_user.number_of_recordings > @room.recordings.count) || false) if @room.owned_by?(current_user)
+      end
       if current_user
         redirect_to @room.join_path(current_user.name, opts, current_user.uid)
       else
@@ -108,9 +112,14 @@ class RoomsController < ApplicationController
     # if current_user.number_of_recordings > @room.recordings.count
       opts = default_meeting_options
       opts[:user_is_moderator] = true
-      opts[:meeting_recorded] = (current_user.number_of_recordings > @room.recordings.count) || false
+      # opts[:meeting_recorded] = (current_user.number_of_recordings > @room.recordings.count) || false
       opts[:allowStartStopRecording] = (current_user.number_of_recordings > @room.recordings.count) || false
       # byebug
+      if current_user.admin?
+        opts[:allowStartStopRecording] = true
+      else
+        opts[:allowStartStopRecording] = (current_user.number_of_recordings > @room.recordings.count) || false
+      end
       begin
         redirect_to @room.join_path(current_user.name, opts, current_user.uid)
       rescue BigBlueButton::BigBlueButtonException => exc
