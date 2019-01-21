@@ -17,10 +17,10 @@
 # with BigBlueButton; if not, see <http://www.gnu.org/licenses/>.
 
 class PasswordResetsController < ApplicationController
-  before_action :disable_password_reset, unless: -> { Rails.configuration.enable_email_verification }
+  # before_action :disable_password_reset, unless: -> { Rails.configuration.enable_email_verification }
   before_action :find_user,   only: [:edit, :update]
   before_action :valid_user, only: [:edit, :update]
-  before_action :check_expiration, only: [:edit, :update]
+  # before_action :check_expiration, only: [:edit, :update]
 
   def index
   end
@@ -72,16 +72,14 @@ class PasswordResetsController < ApplicationController
 
   # Checks expiration of reset token.
   def check_expiration
-    if current_user.password_reset_expired?
+    if current_user && current_user.password_reset_expired?
       redirect_to new_password_reset_url, notice: I18n.t("expired_reset_token")
     end
   end
 
   # Confirms a valid user.
   def valid_user
-    unless current_user&.email_verified && current_user.authenticated?(:reset, params[:id])
-      redirect_to root_url
-    end
+      redirect_to(root_url) if current_user.nil? || !current_user.authenticated?(:reset, params[:id])
   end
 
   def disable_password_reset

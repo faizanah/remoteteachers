@@ -110,17 +110,10 @@ class User < ApplicationRecord
     self.admin? or self.supervisor?
   end
 
-  # Sends password reset email.
-  def send_password_reset_email(url)
-    UserMailer.password_reset(self, url).deliver_now
+  def generate_token
+    SecureRandom.hex(10)
   end
 
-  # Returns true if the given token matches the digest.
-  def authenticated?(attribute, token)
-    digest = send("#{attribute}_digest")
-    return false if digest.nil?
-    BCrypt::Password.new(digest).is_password?(token)
-  end
 
   # Return true if password reset link expires
   def password_reset_expired?

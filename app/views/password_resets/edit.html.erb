@@ -29,7 +29,7 @@
           <h4 class="mt-2"><%= t("reset_password.subtitle") %></h4>
         </div>
         <div class="card-body background">
-          <%= form_for(@user, url: password_reset_path(params[:id])) do |f| %>
+          <%= form_for(@user, url: '/password_resets/' + params[:id]) do |f| %>
 
             <%= hidden_field_tag :email, @user.email %>
 

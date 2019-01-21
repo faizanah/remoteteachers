@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 20190116203542) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "rooms", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "name"
@@ -21,12 +24,12 @@ ActiveRecord::Schema.define(version: 20190116203542) do
     t.datetime "last_session"
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
-    t.index ["bbb_id"], name: "index_rooms_on_bbb_id"
-    t.index ["last_session"], name: "index_rooms_on_last_session"
-    t.index ["name"], name: "index_rooms_on_name"
-    t.index ["sessions"], name: "index_rooms_on_sessions"
-    t.index ["uid"], name: "index_rooms_on_uid"
-    t.index ["user_id"], name: "index_rooms_on_user_id"
+    t.index ["bbb_id"], name: "index_rooms_on_bbb_id", using: :btree
+    t.index ["last_session"], name: "index_rooms_on_last_session", using: :btree
+    t.index ["name"], name: "index_rooms_on_name", using: :btree
+    t.index ["sessions"], name: "index_rooms_on_sessions", using: :btree
+    t.index ["uid"], name: "index_rooms_on_uid", using: :btree
+    t.index ["user_id"], name: "index_rooms_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -52,9 +55,9 @@ ActiveRecord::Schema.define(version: 20190116203542) do
     t.integer  "status",               default: 0
     t.integer  "number_of_rooms",      default: 0
     t.integer  "number_of_recordings", default: 0
-    t.index ["invited_by_id"], name: "index_users_on_invited_by_id"
-    t.index ["password_digest"], name: "index_users_on_password_digest", unique: true
-    t.index ["room_id"], name: "index_users_on_room_id"
+    t.index ["invited_by_id"], name: "index_users_on_invited_by_id", using: :btree
+    t.index ["password_digest"], name: "index_users_on_password_digest", unique: true, using: :btree
+    t.index ["room_id"], name: "index_users_on_room_id", using: :btree
   end
 
 end
