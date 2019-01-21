@@ -22,7 +22,7 @@ class Room < ApplicationRecord
   before_destroy :delete_all_recordings
 
   validates :name, presence: true
-  validate :check_user_rooms_availablity
+  validate :check_user_rooms_availablity, on: :create
   belongs_to :owner, class_name: 'User', foreign_key: :user_id
 
   RETURNCODE_SUCCESS = "SUCCESS"
@@ -48,13 +48,13 @@ class Room < ApplicationRecord
   def start_session(options = {})
     create_options = {
       record: options[:meeting_recorded].to_s,
+      allowStartStopRecording: options[:allowStartStopRecording].to_s || false,
       logoutURL: options[:meeting_logout_url] || '',
       moderatorPW: random_password(12),
       attendeePW: random_password(12),
       moderatorOnlyMessage: options[:moderator_message],
       "meta_#{META_LISTED}": false,
     }
-
     # Update session info.
     update_attributes(sessions: sessions + 1, last_session: DateTime.now)
 
