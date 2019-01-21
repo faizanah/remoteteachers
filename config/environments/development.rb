@@ -34,16 +34,17 @@ Rails.application.configure do
   end
 
   # Tell Action Mailer to use smtp server, if configured
-  config.action_mailer.delivery_method = ENV['SMTP_SERVER'].present? ? :smtp : :sendmail
+  config.action_mailer.default_url_options = { host: ENV['DOMAIN']}
+  ActionMailer::Base.delivery_method = :smtp
 
   ActionMailer::Base.smtp_settings = {
-    address: ENV['SMTP_SERVER'],
-    port: ENV["SMTP_PORT"],
-    domain: ENV['SMTP_DOMAIN'],
-    user_name: ENV['SMTP_USERNAME'],
-    password: ENV['SMTP_PASSWORD'],
-    authentication: ENV['SMTP_AUTH'],
-    enable_starttls_auto: ENV['SMTP_STARTTLS_AUTO'],
+      :user_name => ENV['SENDGRID_USERNAME'],
+      :password => ENV['SENDGRID_PASSWORD'],
+      :domain => 'heroku.com',
+      :address => 'smtp.sendgrid.net',
+      :port => 587,
+      :authentication => :plain,
+      :enable_starttls_auto => true
   }
 
   # Do care if the mailer can't send.
