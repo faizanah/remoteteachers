@@ -81,10 +81,11 @@ class RoomsController < ApplicationController
 
     if @room.running?
       # Determine if the user needs to join as a moderator.
+      opts[:allowStartStopRecording] = false
       opts[:user_is_moderator] = @room.owned_by?(current_user)
-      if current_user.admin?
+      if current_user.present? and current_user.admin?
         opts[:allowStartStopRecording] = true
-      else
+      elsif current_user.present?
         opts[:allowStartStopRecording] = ((current_user.number_of_recordings > @room.recordings.count) || false) if @room.owned_by?(current_user)
       end
       if current_user
