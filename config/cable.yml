@@ -1,8 +1,16 @@
-development:
-  adapter: async
-
-test:
-  adapter: test
-
+#development:
+#  adapter: async
+#
+#test:
+#  adapter: test
+#
+#production:
+#  adapter: <%= ENV['CABLE_ADAPTER'] || 'async' %>
 production:
-  adapter: <%= ENV['CABLE_ADAPTER'] || 'async' %>
+  url: redis://localhost:6379
+
+local: &local
+  url: redis://localhost:6379
+
+development: *local
+test: *local
