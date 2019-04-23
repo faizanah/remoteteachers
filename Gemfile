@@ -118,3 +118,5 @@ gem 'will_paginate', '~> 3.1.0'
 gem 'coveralls', require: false
 gem 'ransack'
 gem 'sendgrid'
+gem 'exception_notification'
+gem 'slack-notifier'

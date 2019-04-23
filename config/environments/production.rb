@@ -78,6 +78,17 @@ Rails.application.configure do
   config.assets.quiet = true
   config.action_cable.allowed_request_origins = [ENV['DOMAIN']]
 
+  config.middleware.use ExceptionNotification::Rack,
+    slack: {
+        webhook_url: ENV['SLACK_WEB_HOOK_URL'],
+        channel: "#exceptions",
+        username: ENV['SLACK_WEB_HOOK_USERNAME'], # ENV based username to distinguish Production Exceptions in channel
+        additional_parameters: {
+            icon_emoji: ":red_circle:",  # RED CIRCLE icon to distinguish Production Exceptions in channel
+            mrkdwn: true
+        }
+    }
+
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 
