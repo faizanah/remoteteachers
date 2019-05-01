@@ -55,11 +55,12 @@ class Room < ApplicationRecord
       moderatorOnlyMessage: options[:moderator_message],
       "meta_#{META_LISTED}": false,
     }
-    # Update session info.
-    update_attributes(sessions: sessions + 1, last_session: DateTime.now)
-
     # Send the create request.
     begin
+      # Update session info.
+      update_attributes(sessions: sessions + 1, last_session: DateTime.now)
+      puts bbb_id
+      puts create_options
       bbb.create_meeting(name, bbb_id, create_options)
     rescue BigBlueButton::BigBlueButtonException => exc
       puts "BigBlueButton failed on create: #{exc.key}: #{exc.message}"
