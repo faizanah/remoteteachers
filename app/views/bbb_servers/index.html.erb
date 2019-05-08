@@ -1,0 +1,75 @@
+<% unless flash.empty? %>
+  <%= render "shared/error_banner" do %>
+    <% flash.each do |key, value| %>
+      <%= content_tag :div, value, class: "flash #{key} d-inline" %>
+    <% end %>
+  <% end %>
+<% end %>
+
+<div class="sessions pb-5">
+  <div class="container pt-6">
+
+
+    <div class="row mt-2">
+      <div class="col-9">
+        <p class="subtitle">List of BigBlueButton Servers</p>
+      </div>
+    </div>
+    <hr class="mt-0">
+
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="table-responsive">
+            <table class="table table-hover table-outline table-vcenter text-nowrap card-table">
+              <thead>
+              <tr>
+                <th class="text-left">Name</th>
+                <th class="text-left" data-header="Length" data-order="none">
+                  Url
+                </th>
+<!--                <th class="text-left" data-header="Users" data-order="none">-->
+<!--                  Role-->
+<!--                </th>-->
+<!--                <th class="text-left" data-header="Users" data-order="none">-->
+<!--                  Max Rooms-->
+<!--                </th>-->
+<!--                <th class="text-left" data-header="Users" data-order="none">-->
+<!--                  Available Rooms-->
+<!--                </th>-->
+<!--                <th class="text-left">Status</th>-->
+<!--                <th class="text-center">Actions</th>-->
+              </tr>
+              </thead>
+              <tbody id="recording-table">
+              <tr id="no_recordings_found" style="display: none;">
+                <td colspan="7" class="text-center h4 p-6 font-weight-normal">
+                  No  recordings match your search.
+                </td>
+              </tr>
+              <% if @bbb_servers.present? %>
+                <% @bbb_servers.each do |server| %>
+                  <%= render("bbb_servers/partials/bbb_server_modal", server: server) %>
+                  <tr>
+                    <td class="text-left"><%= server.name %></td>
+                    <td><%= server.url %></td>
+                    <td class="text-center">
+                      <%= link_to raw("<i class='fas fa-user-edit'></i>"), '#', class: 'btn btn-sm btn-success m-b-5', data: { "toggle": "modal", "target": "#server-" + server.id.to_s} %>
+                      <%= link_to raw("<i class='fas fa-user-times'></i>"), bbb_server_path(server.id), method: :delete, class: 'btn btn-sm btn-danger m-b-5', data: { confirm: "Are you sure?" } %>
+                    </td>
+                  </tr>
+                <% end %>
+              <% else %>
+                <td colspan="7" class="text-center h4 p-6 font-weight-normal">
+                  No Bbb Servers found
+                </td>
+              <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <%= will_paginate @bbb_servers %>
+      </div>
+    </div>
+  </div>
+</div>

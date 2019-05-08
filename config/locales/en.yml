@@ -72,6 +72,7 @@ en:
       help: Need help?
       home: Home Room
       users: Users
+      bbb_servers: BBB Servers
       settings: Settings
       signout: Sign out
   home_room: Home Room
