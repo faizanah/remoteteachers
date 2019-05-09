@@ -43,7 +43,8 @@ module ApplicationHelper
 
   # Determines if the BigBlueButton endpoint is the default.
   def bigbluebutton_endpoint_default?
-    Rails.configuration.bigbluebutton_endpoint_default == Rails.configuration.bigbluebutton_endpoint
+    # Rails.configuration.bigbluebutton_endpoint_default == Rails.configuration.bigbluebutton_endpoint
+    false
   end
 
   # Returns language selection options

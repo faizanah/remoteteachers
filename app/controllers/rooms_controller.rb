@@ -114,7 +114,6 @@ class RoomsController < ApplicationController
       opts = default_meeting_options
       opts[:user_is_moderator] = true
       opts[:meeting_recorded] = (current_user.number_of_recordings > @room.recordings.count) || false
-      # byebug
       if current_user.admin?
         opts[:allowStartStopRecording] = true
       else

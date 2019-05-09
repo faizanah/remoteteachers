@@ -36,7 +36,7 @@ class BbbServersController < ApplicationController
   private
 
   def server_params
-    params.require(:bbb_server).permit(:name, :url)
+    params.require(:bbb_server).permit(:name, :url, :secret)
   end
 
   def find_bbb_server

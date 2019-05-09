@@ -68,8 +68,9 @@ class ApplicationController < ActionController::Base
 
   # Determines if the BigBlueButton endpoint is configured (or set to default).
   def bigbluebutton_endpoint_default?
-    return false if loadbalanced_configuration?
-    Rails.configuration.bigbluebutton_endpoint_default == Rails.configuration.bigbluebutton_endpoint
+    return false
+    # return false if loadbalanced_configuration?
+    # Rails.configuration.bigbluebutton_endpoint_default == Rails.configuration.bigbluebutton_endpoint
   end
   helper_method :bigbluebutton_endpoint_default?
 

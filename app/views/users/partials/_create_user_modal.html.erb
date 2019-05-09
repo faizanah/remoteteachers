@@ -57,6 +57,11 @@
             <% if current_user.admin? %>
               </br>
               <div class="input-icon">
+                <%= f.select :bbb_server_id, BbbServer.all.map {|server| [server.name,server.id]}, {prompt: "Select Bigbluebutton Server"}, class: 'form-control', required: true %>
+                <div class="invalid-feedback text-left"><%= "Bigbluebutton Server can't be blank" %></div>
+              </div>
+              </br>
+              <div class="input-icon">
                 <%= f.select :role, User.roles.keys.map {|role| [role.titleize,role]}, {prompt: t("modal.create_user.role_placeholder")}, class: 'form-control', required: true %>
                 <div class="invalid-feedback text-left"><%= t("modal.create_user.role_not_blank") %></div>
               </div>

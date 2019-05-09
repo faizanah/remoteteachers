@@ -25,22 +25,30 @@
           <%= form_for server, url: server.new_record? ? bbb_servers_path : bbb_server_path(server.id), method: server.new_record? ? :post : :put do |f|  %>
             <div class="input-icon">
               <span class="input-icon-addon">
-                <i class="fa fa-chalkboard-teacher"></i>
+                <i class="fa fa-server"></i>
               </span>
-              <%= f.text_field :name, id: "user-name", class: "form-control", placeholder: "Enter Server name", autocomplete: :off, required: true %>
+              <%= f.text_field :name, class: "form-control", placeholder: "Enter Server name", autocomplete: :off, required: true %>
               <div class="invalid-feedback text-left"><%= "Server name can't be blank "%></div>
             </div>
             </br>
             <div class="input-icon">
               <span class="input-icon-addon">
-                <i class="fa fa-envelope"></i>
+                <i class="fa fa-link"></i>
               </span>
-              <%= f.text_field :url, id: "user-email", class: "form-control", placeholder: t("modal.create_user.email_placeholder"), autocomplete: :off, required: true %>
-              <div class="invalid-feedback text-left"><%= t("modal.create_user.email_not_blank") %></div>
+              <%= f.text_field :url, class: "form-control", placeholder: "Enter server url", autocomplete: :off, required: true %>
+              <div class="invalid-feedback text-left"><%= "Server url can't be blank." %></div>
+            </div>
+            </br>
+            <div class="input-icon">
+              <span class="input-icon-addon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <%= f.text_field :secret, class: "form-control", placeholder: "Enter server secret", autocomplete: :off, required: true %>
+              <div class="invalid-feedback text-left"><%= "Server secret can't be blank." %></div>
             </div>
             </br>
             <div class="form-footer">
-              <%= f.submit 'Submit', id: "create-user-submit", class: "btn btn-outline-primary btn-block btn-pill" %>
+              <%= f.submit 'Submit', class: "btn btn-outline-primary btn-block btn-pill" %>
             </div>
           <% end %>
         </div>

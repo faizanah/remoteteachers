@@ -152,11 +152,13 @@ class Room < ApplicationRecord
   private
 
   def bbb_endpoint
-    Rails.configuration.bigbluebutton_endpoint
+    # Rails.configuration.bigbluebutton_endpoint
+    owner.server.url + "api/"
   end
 
   def bbb_secret
-    Rails.configuration.bigbluebutton_secret
+    # Rails.configuration.bigbluebutton_secret
+    owner.server.secret
   end
 
   # Sets a BigBlueButtonApi object for interacting with the API.
