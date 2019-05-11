@@ -27,7 +27,8 @@ gem 'coffee-rails', '~> 4.2'
 
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
-gem 'mini_racer', platforms: :ruby
+# gem 'mini_racer', platforms: :ruby
+gem 'therubyracer'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -109,6 +110,7 @@ group :development do
   gem 'capistrano-rails', '~> 1.2'
   gem 'capistrano-passenger', '~> 0.2.0'
   gem 'capistrano-rbenv', '~> 2.1'
+  gem 'capistrano-bundler', '~> 1.5'
   gem 'byebug'
 end
 
@@ -120,4 +122,4 @@ gem 'ransack'
 gem 'sendgrid'
 gem 'exception_notification'
 gem 'slack-notifier'
-gem 'libv8', '!= 6.7.288.46.1'
+# gem 'libv8', '!= 6.7.288.46.1'
