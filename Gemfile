@@ -27,7 +27,7 @@ gem 'coffee-rails', '~> 4.2'
 
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
-gem 'mini_racer', '0.2.5'
+gem 'mini_racer', platforms: :ruby
 # gem 'therubyracer'
 gem 'autoprefixer-rails'
 
@@ -123,4 +123,4 @@ gem 'ransack'
 gem 'sendgrid'
 gem 'exception_notification'
 gem 'slack-notifier'
-gem 'libv8'
+# gem 'libv8', '~> 6.3.0'
