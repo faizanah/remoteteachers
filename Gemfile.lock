@@ -336,7 +336,6 @@ PLATFORMS
 
 DEPENDENCIES
   action-cable-testing
-  autoprefixer-rails
   bcrypt (~> 3.1.7)
   bigbluebutton-api-ruby
   bootstrap (~> 4.1.3)

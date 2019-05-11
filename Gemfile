@@ -29,7 +29,7 @@ gem 'coffee-rails', '~> 4.2'
 # gem 'therubyracer', platforms: :ruby
 gem 'mini_racer', platforms: :ruby
 # gem 'therubyracer'
-gem 'autoprefixer-rails'
+# gem 'autoprefixer-rails'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
