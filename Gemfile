@@ -27,10 +27,14 @@ gem 'coffee-rails', '~> 4.2'
 
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
-gem 'mini_racer', platforms: :ruby
+# gem 'mini_racer', platforms: :ruby
 # gem 'therubyracer'
 # gem 'autoprefixer-rails'
-
+group :assets do
+  gem 'yui-compressor'
+  gem 'therubyracer', '~> 0.12', require: 'v8'
+  gem 'ejs'
+end
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 
