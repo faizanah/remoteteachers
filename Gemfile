@@ -27,7 +27,7 @@ gem 'coffee-rails', '~> 4.2'
 
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
-gem 'mini_racer', github: 'discourse/mini_racer'
+gem 'mini_racer', '0.2.5'
 # gem 'therubyracer'
 gem 'autoprefixer-rails'
 
