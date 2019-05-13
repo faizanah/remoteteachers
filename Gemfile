@@ -27,20 +27,8 @@ gem 'coffee-rails', '~> 4.2'
 
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
-# gem 'mini_racer', platforms: :ruby
-# gem 'libv8', '~> 6.3.0'
-# gem 'unparser'
-# gem 'unparser'
-# gem "libv8", github: "cowboyd/libv8", submodules: true
-# gem 'therubyracer'
-gem 'therubyracer', '~> 0.12.2'
-gem 'autoprefixer-rails'
-# gem 'v8eval'
-# group :assets do
-#   gem 'yui-compressor'
-#   gem 'therubyracer', '~> 0.12.2', require: 'v8'
-#   gem 'ejs'
-# end
+gem 'mini_racer', platforms: :ruby
+
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 
@@ -121,7 +109,6 @@ group :development do
   gem 'capistrano-rails', '~> 1.2'
   gem 'capistrano-passenger', '~> 0.2.0'
   gem 'capistrano-rbenv', '~> 2.1'
-  gem 'capistrano-bundler', '~> 1.5'
   gem 'byebug'
 end
 
@@ -133,4 +120,3 @@ gem 'ransack'
 gem 'sendgrid'
 gem 'exception_notification'
 gem 'slack-notifier'
-# gem 'libv8', '5.0.71.48.1beta2'
