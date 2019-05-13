@@ -7,4 +7,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
- User.create!({name: 'Faizan Ah',provider: 'greenlight', email: 'faizuali4+202@gmail.com', password: '1234zxcv', role: 'admin', status: 'accepted'})
+ user = User.create!({name: 'Faizan Ah',provider: 'greenlight', email: 'faizuali4@gmail.com', password: '1234zxcv', role: 'admin', status: 'accepted'})
+ server = BbbServer.create!({url: 'http://test-install.blindsidenetworks.com/bigbluebutton/', name: 'Test Server', secret: '8cd8ef52e8e101574e400365b55e11a6', user: user})
+ user.bbb_server_id = server.id
+ user.save
