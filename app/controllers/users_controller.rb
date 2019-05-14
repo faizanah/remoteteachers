@@ -59,7 +59,7 @@ class UsersController < ApplicationController
   def create
     # Verify that GreenLight is configured to allow user signup.
     # return unless Rails.configuration.allow_user_signup
-    @user = User.new(user_params.merge!({provider: 'greenlight',password: User.new_token, invited_by: current_user}))
+    @user = User.new(user_params.merge!({provider: 'greenlight',password: User.new_token, invited_by: current_user, bbb_server_id: user_params[:bbb_server_ids].reject(&:empty?).sample.to_i}))
     if @user.save
       flash[:success] = 'Invitation Successfully sent.'
       UserMailer.invitation_instructions(@user, invitation_link(@user)).deliver
@@ -236,6 +236,6 @@ class UsersController < ApplicationController
   end
   def user_params
     params.require(:user).permit(:name, :email, :bbb_server_id, :role, :image, :number_of_recordings, :number_of_rooms,:password, :password_confirmation,
-      :new_password, :provider, :accepted_terms, :language)
+      :new_password, :provider, :accepted_terms, :language, bbb_server_ids: [])
   end
 end
