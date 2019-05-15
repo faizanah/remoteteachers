@@ -90,8 +90,13 @@ class UsersController < ApplicationController
 
   def user_update
     if @user.update_attributes(user_params)
-      flash[:success] = 'User Successfully updated.'
-      redirect_to users_path
+      if params[:user][:type].present?
+        flash[:success] = 'Server successfully changed.'
+        redirect_to request.referer
+      else
+        flash[:success] = 'User Successfully updated.'
+        redirect_to users_path
+      end
     else
       flash[:errors] = @user.errors.full_messages.join(',')
       redirect_to request.referer

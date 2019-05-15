@@ -7,6 +7,7 @@
             <h3>Change your server</h3>
           </div>
           <%= form_for current_user, url: "/users_update/#{current_user.uid}", method: :put do |f|  %>
+            <%= f.hidden_field :type, value: 'bbb_server' %>
             <div class="input-icon">
               <span class="input-icon-addon">
                 <i class="fa fa-server"></i>
