@@ -56,8 +56,8 @@
       <%= yield %>
 
       <% if current_user %>
-        <%= render "shared/modals/create_room_modal" %>
         <%= render "shared/server" %>
+        <%= render "shared/modals/create_room_modal" %>
         <%= render("users/partials/create_user_modal", user: User.new) if current_user.admin_or_supervisor?%>
         <%= render("bbb_servers/partials/bbb_server_modal", server: BbbServer.new) if current_user.admin?%>
       <% end %>
