@@ -11,7 +11,7 @@
               <span class="input-icon-addon">
                 <i class="fa fa-server"></i>
               </span>
-              <%= f.select :bbb_server_id, BbbServer.all.map {|server| [server.name,server.id]}, {}, { class: "form-control custom-select" }%>
+              <%= f.select :bbb_server_id, current_user.bbb_servers.map {|server| [server.name,server.id]}, {}, { class: "form-control custom-select" }%>
             </div>
             <div class="form-footer">
               <%= f.submit "Save", class: "btn btn-outline-primary btn-block btn-pill" %>
