@@ -19,7 +19,7 @@
 class UsersController < ApplicationController
   before_action :find_user, only: [:edit, :update, :destroy, :user_update, :user_rooms, :user_room_delete, :user_room_show]
   before_action :find_room, only: [:user_room_delete, :user_room_show]
-  before_action :ensure_admin, except: [:destroy, :edit, :update]
+  before_action :ensure_admin, except: [:destroy, :edit, :update, :user_update]
 
   # def recording_date(date)
   #   date.strftime("%B #{date.day.ordinalize}, %Y.")
