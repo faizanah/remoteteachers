@@ -114,6 +114,10 @@ class Room < ApplicationRecord
     []
   end
 
+  def get_meeting_info
+    bbb.get_meeting_info(bbb_id, nil)
+  end
+
   # Fetches all recordings for a room.
   def recordings
     res = bbb.get_recordings(meetingID: bbb_id)
@@ -163,12 +167,13 @@ class Room < ApplicationRecord
 
   # Sets a BigBlueButtonApi object for interacting with the API.
   def bbb
-    @bbb ||= if Rails.configuration.loadbalanced_configuration
-      lb_user = retrieve_loadbalanced_credentials(owner.provider)
-      BigBlueButton::BigBlueButtonApi.new(remove_slash(lb_user["apiURL"]), lb_user["secret"], "0.8")
-    else
-      BigBlueButton::BigBlueButtonApi.new(remove_slash(bbb_endpoint), bbb_secret, "0.8")
-    end
+    # @bbb ||= if Rails.configuration.loadbalanced_configuration
+    #   lb_user = retrieve_loadbalanced_credentials(owner.provider)
+    #   BigBlueButton::BigBlueButtonApi.new(remove_slash(lb_user["apiURL"]), lb_user["secret"], "0.8")
+    # else
+    #   BigBlueButton::BigBlueButtonApi.new(remove_slash(bbb_endpoint), bbb_secret, "0.8")
+    # end
+    BigBlueButton::BigBlueButtonApi.new(remove_slash(bbb_endpoint), bbb_secret, "0.8")
   end
 
   # Generates a uid for the room and BigBlueButton.

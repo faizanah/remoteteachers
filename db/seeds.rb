@@ -7,7 +7,8 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-server = BbbServer.create!({url: 'http://test-install.blindsidenetworks.com/bigbluebutton/', name: 'Test Server', secret: '8cd8ef52e8e101574e400365b55e11a6'})
-user = User.create!({name: 'Faizan Ah',provider: 'greenlight', email: 'faizuali4@gmail.com', password: '1234zxcv', role: 'admin', status: 'accepted', bbb_server_id: server.id})
-server.user_id = user.id
-server.save
+# server = BbbServer.create!({url: 'http://test-install.blindsidenetworks.com/bigbluebutton/', name: 'Test Server', secret: '8cd8ef52e8e101574e400365b55e11a6'})
+# user = User.create!({name: 'Faizan Ah',provider: 'greenlight', email: 'faizuali4+22@gmail.com', password: '1234zxcv', role: 'admin', status: 'accepted', bbb_server_id: server.id})
+# server.user_id = user.id
+# server.save
+AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?

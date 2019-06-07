@@ -29,6 +29,7 @@ class User < ApplicationRecord
   belongs_to :main_room, class_name: 'Room', foreign_key: :room_id, required: false
   belongs_to :invited_by, class_name: 'User', foreign_key: :invited_by_id, required: false
   belongs_to :server, class_name: 'BbbServer', foreign_key: :bbb_server_id, required: true
+  belongs_to :platform, optional: true
   has_and_belongs_to_many :bbb_servers
 
   validates :name, length: { maximum: 256 }, presence: true
@@ -48,6 +49,8 @@ class User < ApplicationRecord
   has_secure_password(validations: false)
 
   before_create :set_initation_token, if: Proc.new{|u| u.invited_by_id.present? }
+
+  counter_culture :platform
 
   class << self
     # Generates a user from omniauth.
