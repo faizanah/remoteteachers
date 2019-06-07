@@ -6,10 +6,31 @@ ActiveAdmin.register Platform do
 
   filter :name
 
-  index do
+  index :download_links => false do
     column :name
     column :admin
+    column :users_count
+    column 'Servers Count' do |platform|
+      platform.bbb_servers.count
+    end
     actions
+  end
+
+  show do
+    attributes_table do
+      row :name
+      row :admin
+      row :users_count
+      row :created_at
+    end
+
+    panel "List of BBB Servers" do
+      table_for platform.bbb_servers do
+        column :name
+        column :url
+        column :created_at
+      end
+    end
   end
 
   form do |f|
