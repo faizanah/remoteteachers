@@ -17,6 +17,7 @@
 # with BigBlueButton; if not, see <http://www.gnu.org/licenses/>.
 
 class Room < ApplicationRecord
+
   before_create :setup
 
   before_destroy :delete_all_recordings
@@ -27,6 +28,10 @@ class Room < ApplicationRecord
 
   RETURNCODE_SUCCESS = "SUCCESS"
   META_LISTED = "gl-listed"
+
+  def to_param
+    uid
+  end
 
   # Determines if a user owns a room.
   def owned_by?(user)

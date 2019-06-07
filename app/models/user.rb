@@ -52,6 +52,10 @@ class User < ApplicationRecord
 
   counter_culture :platform
 
+  def to_param
+    uid
+  end
+
   class << self
     # Generates a user from omniauth.
     def from_omniauth(auth)
