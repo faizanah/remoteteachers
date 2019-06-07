@@ -39,7 +39,7 @@ class ApplicationController < ActionController::Base
 
   # Sets the appropriate locale.
   def set_locale
-    update_locale(current_user)
+    update_locale(current_user) if current_user.present?
   end
 
   def update_locale(user)
