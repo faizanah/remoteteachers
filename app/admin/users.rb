@@ -2,8 +2,11 @@ ActiveAdmin.register User do
   menu false
   controller do
     actions :all, :except => [ :new, :destroy, :edit, :index]
+    def find_resource
+      scoped_collection.where(uid: params[:id]).first!
+    end
   end
-
+  
   show do
     attributes_table do
       row :name
