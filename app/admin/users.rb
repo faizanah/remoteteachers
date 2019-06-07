@@ -6,7 +6,7 @@ ActiveAdmin.register User do
       scoped_collection.where(uid: params[:id]).first!
     end
   end
-  
+
   show do
     attributes_table do
       row :name
