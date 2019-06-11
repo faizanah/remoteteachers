@@ -12,3 +12,5 @@
 # server.user_id = user.id
 # server.save
 AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
+AdminUser.create!(email: 'faizuali4@gmail.com', password: 'password', password_confirmation: 'password')
+AdminUser.create!(email: 'jfeuzeu@hotmail.com', password: 'password', password_confirmation: 'password')
