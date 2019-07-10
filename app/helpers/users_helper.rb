@@ -25,4 +25,12 @@ module UsersHelper
   def user_status status
 
   end
+
+  def user_bbb_servers user
+    if user.admin?
+      user.platform.bbb_servers
+    else
+      user.bbb_servers
+    end
+  end
 end
