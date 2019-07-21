@@ -12,6 +12,9 @@
 //@import "active_admin/base";
 $primary-color: #0088cc;
 @import 'formadmin/formadmin';
+#platform_bbb_server_ids_input > select {
+ width: 78%;
+}
 
 // Overriding any non-variable SASS must be done after the fact.
 // For example, to change the default status-tag color:

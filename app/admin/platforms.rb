@@ -36,7 +36,9 @@ ActiveAdmin.register Platform do
   form do |f|
     f.inputs do
       f.input :name
-      f.input :bbb_server_ids, as: :check_boxes, collection: BbbServer.all
+      # f.input :bbb_server_ids, as: :check_boxes, collection: BbbServer.all
+      f.input :bbb_server_ids, as: :select, multiple: true, collection: BbbServer.all.map {|u| [u.name, u.id]}
+
       f.input :user_id, :label => 'Admin', :as => :select, :collection => User.admin.accepted.map{|u| ["#{u.name} <#{u.email}>", u.id]}
 
     end
