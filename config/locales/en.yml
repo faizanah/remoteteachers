@@ -21,7 +21,7 @@ en:
     attributes:
       user:
         accepted_terms: "Terms and Conditions"
-  bigbluebutton: Remote Teachers
+  bigbluebutton: Virtual Class Management
   bigbluebutton_exception: Oops, there was an error when starting the meeting!
   cancel: Cancel
   copy: Copy
@@ -39,10 +39,10 @@ en:
       contact_admin: If you are not an administrator, please contact one.
       continue: I'd like to stay using 1.0.
       notice: >
-        Remote Teachers encountered a database migration error.<br>
-        This may be because you haven't updated to Remote Teachers 2.0.
+        Virtual Class Management encountered a database migration error.<br>
+        This may be because you haven't updated to Virtual Class Management 2.0.
       upgrade: Show me how to upgrade to 2.0!
-      version: We've released a new version of Remote Teachers, but your database isn't compatible.
+      version: We've released a new version of Virtual Class Management, but your database isn't compatible.
     not_found:
       message: Whoops! Looks like we can't find that.
       help: Is it possible its been removed?
@@ -64,7 +64,7 @@ en:
     email: Email
     submit: Submit
   go_back: Go back
-  greenlight: Remote Teachers
+  greenlight: Virtual Class Management
   header:
     create_room: Create Room
     invite_user: Invite User
@@ -84,9 +84,9 @@ en:
   landing:
     about: "You can create your own rooms to host sessions. Each room has a convenient invitation link for participants to joint the session."
     welcome: Virtual Classrooms Management
-    video: Watch our tutorial on using Remote Teachers
+    video: Watch our tutorial on using Virtual Class Management
     upgrade: Show me how to upgrade to 2.0!
-    version: We've released a new version of Remote Teachers, but your database isn't compatible.
+    version: We've released a new version of Virtual Class Management, but your database isn't compatible.
   language_options:
     default: Default (browser language)
     ar: Arabic
@@ -207,7 +207,7 @@ en:
       title: Delete Account
     design:
       not_supported: Customization not currently supported.
-      subtitle: Customize Remote Teachers
+      subtitle: Customize Virtual Class Management
       title: Design
     password:
       confirmation: New Password Confirmation
