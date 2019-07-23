@@ -40,7 +40,7 @@ Rails.application.routes.draw do
   # Password reset resources.
   resources :password_resets, only: [:new, :create, :edit, :update]
   resources :users, only: [:index, :create, :destroy]
-  resources :bbb_servers
+  # resources :bbb_servers
 
   # User resources.
   scope '/u' do
