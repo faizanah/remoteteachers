@@ -62,7 +62,6 @@ class UsersController < ApplicationController
     @user = User.new(user_params.merge!({provider: 'greenlight',password: User.new_token, invited_by: current_user, bbb_server_id: user_params[:bbb_server_ids].reject(&:empty?).sample.to_i}))
     if @user.save
       flash[:success] = 'Invitation Successfully sent.'
-      UserMailer.invitation_instructions(@user, invitation_link(@user)).deliver
       redirect_to users_path
     else
       flash[:errors] = @user.errors.full_messages.join(',')
@@ -219,7 +218,7 @@ class UsersController < ApplicationController
   end
 
   def invitation_link user
-    request.base_url + invitation_path(user.invitation_token)
+    request.base_url + Rails.application.routes.url_helpers.invitation_path(user.invitation_token)
   end
 
   def find_user

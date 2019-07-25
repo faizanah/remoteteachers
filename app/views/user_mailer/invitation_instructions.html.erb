@@ -6,7 +6,11 @@
   <body>
     <h3>Welcome to Virtual Class Management, <%= @user.name %></h3>
     <p>
-      You are invited by <%= @user.invited_by.name %> on Virtual Class Management.</p>
+      <% if @user.invited_by.present? %>
+        You are invited by <%= @user.invited_by.name %> on Virtual Class Management.</p>
+        <% else %>
+          You are invited on Virtual Class Management.</p>
+    <% end %>
     <p>
       To setup your account, just follow this link: <%= link_to 'click here', @url %>.
     </p>

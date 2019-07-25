@@ -49,12 +49,22 @@ class User < ApplicationRecord
   has_secure_password(validations: false)
 
   before_create :set_initation_token, if: Proc.new{|u| u.invited_by_id.present? }
+  after_create :send_invitation, if: Proc.new{|u| u.pending?}
   before_validation :set_bbb_server, if: Proc.new{|u| u.admin? }, on: :create
 
   counter_culture :platform
 
   def to_param
     uid
+  end
+
+  def invitation_link
+    update_attribute(:invitation_token,  User.new_token)
+    ENV['DOMAIN'] + Rails.application.routes.url_helpers.invitation_path(self.invitation_token)
+  end
+
+  def send_invitation
+    UserMailer.invitation_instructions(self, self.invitation_link).deliver
   end
 
   class << self
