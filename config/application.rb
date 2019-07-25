@@ -67,7 +67,7 @@ module Greenlight
     end
 
     # Specify the email address that all mail is sent from
-    config.email_sender = ENV['EMAIL_SENDER'].present? ? ENV['EMAIL_SENDER'] : "notifications@example.com"
+    config.email_sender = ENV['EMAIL_SENDER'].present? ? ENV['EMAIL_SENDER'] : "noreply@govirtualclass.com"
 
     # Determine if GreenLight should enable email verification
     config.enable_email_verification = (ENV['ALLOW_MAIL_NOTIFICATIONS'] == "true")

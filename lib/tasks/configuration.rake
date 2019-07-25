@@ -44,7 +44,7 @@ def test_smtp
 
   smtp.start(ENV['SMTP_DOMAIN'], ENV['SMTP_USERNAME'], ENV['SMTP_PASSWORD'],
     ENV['SMTP_AUTH']) do |s|
-    s.sendmail('test', ENV['SMTP_USERNAME'], 'notifications@example.com')
+    s.sendmail('test', ENV['SMTP_USERNAME'], 'noreply@govirtualclass.com')
   end
 rescue => exc
   failed("Error connecting to SMTP - #{exc}")
