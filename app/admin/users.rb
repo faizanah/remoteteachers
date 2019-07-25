@@ -19,8 +19,9 @@ ActiveAdmin.register User, as: 'Admins' do
     selectable_column
     column :name
     column :email
-    column :number_of_rooms
-    column :number_of_recordings
+    # column :number_of_rooms
+    # column :number_of_recordings
+    column :platform
     column :status do |user|
       user.status.humanize
     end
