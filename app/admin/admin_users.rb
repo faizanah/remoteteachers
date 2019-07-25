@@ -1,10 +1,10 @@
-ActiveAdmin.register AdminUser do
-  menu false
+ActiveAdmin.register AdminUser, as: 'Super Admins' do
+  # menu false
   permit_params :email, :password, :password_confirmation
 
-  controller do
-    actions :all, :except => [ :new, :destroy]
-  end
+  # controller do
+  #   actions :all, :except => [ :new, :destroy]
+  # end
 
   index do
     selectable_column
