@@ -15,7 +15,7 @@ ActiveAdmin.register User, as: 'Admins' do
     end
   end
 
-  index do
+  index :download_links => false do
     selectable_column
     column :name
     column :email
