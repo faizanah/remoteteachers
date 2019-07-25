@@ -49,6 +49,7 @@ class User < ApplicationRecord
   has_secure_password(validations: false)
 
   before_create :set_initation_token, if: Proc.new{|u| u.invited_by_id.present? }
+  before_validation :set_bbb_server, if: Proc.new{|u| u.admin? }, on: :create
 
   counter_culture :platform
 
@@ -180,6 +181,10 @@ class User < ApplicationRecord
     token = '1234zxcv'
     self.password = token
     self.password_confirmation = token
+  end
+
+  def set_bbb_server
+    self.server = self.platform.bbb_servers.first if self.server.nil? and self.platform.present?
   end
 
   private
