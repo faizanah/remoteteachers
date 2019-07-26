@@ -40,8 +40,8 @@ ActiveAdmin.register User, as: 'Admins' do
       row :email
       row :platform
       row :role
-      row :number_of_rooms
-      row :number_of_recordings
+      # row :number_of_rooms
+      # row :number_of_recordings
       row :status
       row :created_at
     end
@@ -52,8 +52,8 @@ ActiveAdmin.register User, as: 'Admins' do
       f.input :name
       f.input :email
       f.input :platform
-      f.input :number_of_rooms
-      f.input :number_of_recordings
+      # f.input :number_of_rooms
+      # f.input :number_of_recordings
       f.input :role, as: :hidden
       f.input :password, as: :hidden, input_html: { value: User.new_token }
       f.input :provider, as: :hidden, input_html: { value: 'greenlight' }
