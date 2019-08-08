@@ -194,7 +194,7 @@ class User < ApplicationRecord
   end
 
   def set_bbb_server
-    self.server = self.platform.bbb_servers.first if self.server.nil? and self.platform.present?
+    self.server = (self.server.nil? and self.platform.present?) ? self.platform.bbb_servers.first : BbbServer.first
   end
 
   private

@@ -28,9 +28,9 @@ module UsersHelper
 
   def user_bbb_servers user
     if user.admin?
-      user.platform.bbb_servers
+      user.platform.present? ? user.platform.bbb_servers : []
     else
-      user.bbb_servers
+      user.bbb_servers || []
     end
   end
 end
