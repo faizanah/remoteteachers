@@ -59,4 +59,5 @@
 #     auth_methods: %w(publickey password)
 #     # password: "please use keys"
 #   }
-server '51.158.106.93', user: 'jfeuzeu', roles: %w{app db web}
+# server '51.158.106.93', user: 'jfeuzeu', roles: %w{app db web}
+server '116.203.144.7', user: 'jfeuzeu', roles: %w{app db web}
