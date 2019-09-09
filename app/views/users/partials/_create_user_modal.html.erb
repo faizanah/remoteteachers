@@ -58,7 +58,7 @@
               </br>
               <div class="input-icon">
                 <%#= f.collection_select :bbb_server_ids, current_user.platform.bbb_servers || [], :id, :name, {}, {:multiple => true,  class: 'form-control'} %>
-                <%= f.select :bbb_server_ids, (current_user.platform.present? ? current_user.platform.bbb_servers : []).map {|b| [b.name,b.id]}, {prompt: 'Select the Server(s)'}, class: 'form-control', required: true, :multiple => true %>
+                <%= f.select :bbb_server_ids, (current_user.platform.present? ? current_user.platform.bbb_servers : []).map {|b| [b.name,b.id]}, {}, class: 'form-control', required: true, :multiple => true %>
                 <%#= select_tag 'bbb_servers_ids[]', options_for_select(BbbServer.all.map { |s| [s.name, s.id] }, user.bbb_servers.pluck(:id)), multiple: true, size: 10  %>
                 <%#= f.select :bbb_server_ids, BbbServer.all.map {|server| [server.name,server.id]}, {prompt: "Select Bigbluebutton Server"}, class: 'form-control', multitple: true, required: true %>
                 <div class="invalid-feedback text-left"><%= "Bigbluebutton Server can't be blank" %></div>
