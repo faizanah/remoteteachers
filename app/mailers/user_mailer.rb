@@ -15,7 +15,7 @@ class UserMailer < ApplicationMailer
 
   def invitation_instructions(user, url)
     @user = user
-    @url = url
+    @url = "https://" + url
     mail to: user.email, subject: t('invitation.subtitle')
   end
 end
