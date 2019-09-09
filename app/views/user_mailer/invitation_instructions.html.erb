@@ -4,7 +4,7 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h3>Welcome to Virtual Class Management, <%= @user.name %></h3>
+    <h3>Welcome to the Virtual Class Management, <%= @user.name %></h3>
     <p>
       <% if @user.invited_by.present? %>
         You are invited by <%= @user.invited_by.name %> on Virtual Class Management.</p>
