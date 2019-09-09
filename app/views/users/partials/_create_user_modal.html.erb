@@ -57,6 +57,7 @@
             <% if current_user.admin? %>
               </br>
               <div class="input-icon">
+                <%= f.label 'Select the Server(s)', style: "float: left" %>
                 <%#= f.collection_select :bbb_server_ids, current_user.platform.bbb_servers || [], :id, :name, {}, {:multiple => true,  class: 'form-control'} %>
                 <%= f.select :bbb_server_ids, (current_user.platform.present? ? current_user.platform.bbb_servers : []).map {|b| [b.name,b.id]}, {}, class: 'form-control', required: true, :multiple => true %>
                 <%#= select_tag 'bbb_servers_ids[]', options_for_select(BbbServer.all.map { |s| [s.name, s.id] }, user.bbb_servers.pluck(:id)), multiple: true, size: 10  %>
