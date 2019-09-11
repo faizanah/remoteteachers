@@ -14,8 +14,8 @@
 %>
 
 <footer class="footer pt-3">
-  <p class="text-center mb-1"><%= t("footer.powered_by", href: link_to( 'govirtualclass.com', "https://govirtualclass.com", target: "_blank")).html_safe %> |
-    <%= link_to 'Terms of Use', 'https://govirtualclass.com/terms' %> | <%= link_to 'Privacy Policy', 'https://govirtualclass.com/privacy' %>
+  <p class="text-center mb-1"><%= t("footer.powered_by", href: link_to( @site.name, @site.domain_url, target: "_blank")).html_safe %> |
+    <%= link_to 'Terms of Use', @site.terms_and_condition_url %> | <%= link_to 'Privacy Policy', @site.privacy_and_policy_url %>
 
   </p>
 </footer>

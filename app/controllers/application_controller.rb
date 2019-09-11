@@ -23,6 +23,7 @@ class ApplicationController < ActionController::Base
 
   before_action :migration_error?
   before_action :set_locale
+  before_action :set_site
 
   # Force SSL for loadbalancer configurations.
   before_action :redirect_to_https
@@ -41,7 +42,9 @@ class ApplicationController < ActionController::Base
   def set_locale
     update_locale(current_user) if current_user.present?
   end
-
+ def set_site
+   @site ||= Site.last
+ end
   def update_locale(user)
     I18n.locale = if user && user.language != 'default'
       user.language
