@@ -1,0 +1,2 @@
+production:
+  url: "postgres://jfeuzeu:jfeuzeu@localhost:5432/remoteteachers_production"
