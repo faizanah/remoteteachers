@@ -4,14 +4,14 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h3>Welcome, <%= @user.name %></h3>
+    <h3>Welcome <%= @user.name %>,</h3>
     <p>
       <%# if @user.invited_by.present? %>
 <!--        You are invited by <%#= @user.invited_by.name %> on <%#= @site.name %> virtual class management.</p>-->
         <%# else %>
 <!--          You are invited on <%#= @site.name %> virtual class management platform.</p>-->
     <%# end %>
-      You are invited on <%= @site.name %> virtual Classroom management platform.</p>
+      You are invited on <%= @site.name %>' virtual classroom management platform.</p>
     <p>
       To setup your account, just follow this link: <%= link_to 'click here', @url %>.
     </p>
