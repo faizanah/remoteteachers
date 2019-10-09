@@ -9,6 +9,15 @@ class Platform < ApplicationRecord
 
   def set_platform
     self.admin.update({platform_id: id }) if admin.present?
+    servers = self.bbb_servers.pluck(:id) || []
+    if servers.present?
+      users = User.admin.where(platform_id: self.id) || []
+      users.each do |user|
+        if not servers.include? user.bbb_server_id
+          user.bbb_server_id = servers.first
+          user.save
+        end
+      end
+    end
   end
-
 end
