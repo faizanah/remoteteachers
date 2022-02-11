@@ -11,7 +11,7 @@ end
 gem 'rails', '~> 5.0.7'
 
 # Use Puma as the app server
-gem 'puma', '~> 3.0'
+gem 'puma', '~> 5.6'
 gem "figaro"
 # Use SQLite as the primary database.
 # gem 'sqlite3'
